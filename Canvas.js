@@ -3,19 +3,22 @@ class Canvas{
 		this.canvas        		 = document.getElementById("canvas");
 		this.canvas.style.width  = window.innerWidth+"px";
 		this.canvas.style.height = window.innerHeight+"px";
+		this.canvas.width = window.innerWidth;
+		this.canvas.height = window.innerHeight;
 
-		this.context = this.canvas.getContext("2d");
-		this.diff = null;
-		this.last = null;
+		this.context  = this.canvas.getContext("2d");
+		this.diff 	  = null;
+		this.last 	  = null;
 		this.tickRate = 1000.0/33.0;
 
 		window.onresize =(e)=>{
 			this.canvas.style.width = e.target.innerWidth+"px";
 			this.canvas.style.height = e.target.innerHeight+"px";
+			this.canvas.width = e.target.innerWidth;
+			this.canvas.height = e.target.innerHeight;
 		}
 
 		this.init();
-
 		return this.canvas;
 	}
 
@@ -43,9 +46,11 @@ class Canvas{
 	}
 
 	update(t){
+		EntityManager.update(t);
 	}
 
 	draw(c){
 		this.clear(c);
+		EntityManager.draw(c);
 	}
 }
