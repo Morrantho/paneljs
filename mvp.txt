@@ -1,0 +1,13 @@
+* Record
+* Play
+* Pause
+* Rewind
+* Stop
+* Add/Remove Audio tracks
+* Add/Remove MIDI tracks
+* Record MIDI
+* Time Slider
+* Set BPM
+* Set time signature
+* MIDI map
+* Piano Roll

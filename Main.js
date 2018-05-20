@@ -1,0 +1,1 @@
+const CANVAS = new Canvas();
