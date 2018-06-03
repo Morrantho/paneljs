@@ -24,36 +24,48 @@ class CBasePanel{
 
 	SetColor(r,g,b,a){this.color.x=r;this.color.y=g;this.color.z=b;this.color.w=a;}
 	GetColor(){return this.color;}
-	
+
 	SetParent(parent){this.parent=parent;}
 	GetParent(){return this.parent;}
 
 	GetChildren(){return this.children;}
-	
+
 	Init(){}
 	Add(pnl){
 		this.children.push(pnl);
 	}
-	Tick(t){}	
+	Tick(t){}
 	Render(context){}
 
 	__Init__(){this.Init();}
 	__Click__(){}
+	__Unclick__(){}
 	__Hover__(){}
+	__Unhover__(){}
 	__Drag__(){}
 	__Drop__(){}
 	// Template Method. Don't Overwrite. Subclasses hook into these methods.
 	__Tick__(t){
-		// if(this.parent){ // If we have a parent, we're a child.
-		// 	this.position.x = this.parent.position.x;
-		// 	this.position.y = this.parent.position.y;
-		// }
+		if(this.xOff == undefined){
+			this.xOff = this.position.x;
+			this.yOff = this.position.y;
+		}
+
+		if(this.lastPos == undefined){
+			this.lastPos = this.position;
+		}
+
+		if(this.parent){ // If we have a parent, we're a child.
+			this.position.x = this.parent.position.x+this.xOff;
+			this.position.y = this.parent.position.y+this.yOff;
+		}
 
 		this.Tick(t);
 		this.__Click__();
+		this.__Unclick__();
 		this.__Hover__();
-		this.__Drag__();
-		// this.__Drop__();
+		this.__Unhover__();
+		this.__Drag__(); // __Drop__() gets called in __Drag__();
 
 		this.children.map(child=>child.__Tick__(t));
 	}

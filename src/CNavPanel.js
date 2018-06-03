@@ -1,39 +1,52 @@
 class CNavPanel extends CPanel{
 	Init(parent,args){
-		this.size.y = parent.size.y/12;
-		this.size.x = parent.size.x;
+		this.size.x = 512;
+		this.size.y = 32;
 
-		this.color.x = 128;
-		this.color.y = 128;
-		this.color.z = 128;
+		this.color.x = 64;
+		this.color.y = 64;
+		this.color.z = 64;
 		this.color.w = 1;
-		this.bg=this.color;
+
+		this.bg.x=32;
+		this.bg.y=32;
+		this.bg.z=32;
+		this.bg.w=32;
 
 		let x = Gui.Create(CButton,this);
 		x.position.x = this.size.x-x.size.x;
 
-		let min = Gui.Create(CButton,this);
-		min.position.x = x.position.x-min.size.x;
-
 		let max = Gui.Create(CButton,this);
-		max.position.x = min.position.x-max.size.x;
+		max.position.x = x.position.x-max.size.x+1;
+		max.SetText("[ ]");
+
+		let min = Gui.Create(CButton,this);
+		min.position.x = max.position.x-min.size.x+1;
+		min.SetText("_");
+
+		let pnl = Gui.Create(CPanel,this);
+		pnl.size.x = this.size.x;
+		pnl.size.y = this.size.y*12;
+		pnl.position.x = 0;
+		pnl.position.y = this.position.y+this.size.y-1;
 	}
 
-	Click(x,y){
-		this.lastPos = new CVector2(x,y);
+	Click(){
+
 	}
 
 	Drag(x,y){
-		let curPos = new CVector2(x,y);
-		let distX = this.lastPos.DistanceX(curPos);
-		let distY = this.lastPos.DistanceY(curPos);
+		for(let child in this.children){
+			if(this.children[child].isHovered){return false;}
+		}
 
-		console.log(distX,distY);
+		this.position.x = x;
+		this.position.y = y;
+		document.body.style.cursor="move";
+	}
 
-		this.position.x += distX;
-		this.position.y += distY;
-
-		this.lastPos = new CVector2(x,y);
+	Drop(){
+		document.body.style.cursor="default";
 	}
 }
 Gui.Register(CNavPanel);

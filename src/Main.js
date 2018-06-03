@@ -12,9 +12,9 @@ window.onload=()=>{
 		canvas.height=window.innerHeight;
 		canvas.style.width=canvas.width+"px";
 		canvas.style.height=canvas.height+"px";
-		context.fillStyle="rgb(0,0,0)";
+		context.fillStyle="rgb(127,127,127)";
 		context.fillRect(0,0,canvas.width,canvas.height);
-		
+
 		Gui.GetPanels().map(pnl=>pnl.__Render__(context));
 	}
 
@@ -25,6 +25,6 @@ window.onload=()=>{
 	}
 	window.requestAnimationFrame(Run);
 
-	let pnl = Gui.Create(CPanel);
+	let pnl = Gui.Create(CNavPanel);
 	// console.log(Gui.GetPanels());
 }

@@ -11,10 +11,8 @@ const Gui = {
 
 	Create:(clazz,parent,...args)=>{
 		let pnl = new ctors[clazz.name]();
-		// console.log(clazz.name,parent);
 		pnl.Init(parent,args);
 		pnl.id=id++;
-
 
 		if(!parent){ // Global Panels.
 			panels[pnl.id]=pnl;
@@ -22,13 +20,13 @@ const Gui = {
 			parent.Add(pnl);
 			pnl.SetParent(parent);
 		}
-		return pnl;	
+		return pnl;
 	},
 
 	GetPanels:()=>{
 		return panels;
 	},
-	
+
 	GetMouse:()=>{
 		return mouse;
 	},
@@ -37,13 +35,6 @@ const Gui = {
 		return mouseDown;
 	}
 };
-window.onmousemove=(e)=>{
-	mouse.x=e.clientX;
-	mouse.y=e.clientY;
-}
-window.onmousedown=(e)=>{
-	mouseDown=true;
-}
-window.onmouseup=(e)=>{
-	mouseDown=false;
-}
+window.onmousemove=(e)=>{mouse.x=e.clientX;mouse.y=e.clientY;}
+window.onmousedown=(e)=>{mouseDown=true;}
+window.onmouseup=(e)=>{mouseDown=false;}

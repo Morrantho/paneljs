@@ -1,16 +1,15 @@
 class CButton extends CPanel{
-
 	Init(parent,args){
 		this.text = "X";
 
-		this.size.x = parent.size.y;
-		this.size.y = parent.size.y;
+		this.size.x = 32;
+		this.size.y = 32;
 
 		this.color.w = 1;
 
-		this.bg.x=128;
-		this.bg.y=128;
-		this.bg.z=128;
+		this.bg.x=32;
+		this.bg.y=32;
+		this.bg.z=32;
 		this.bg.w=1;
 	}
 
@@ -27,9 +26,9 @@ class CButton extends CPanel{
 			this.color.y=52;
 			this.color.z=52;
 		}else{
-			this.color.x=32;
-			this.color.y=32;
-			this.color.z=32;
+			this.color.x=64;
+			this.color.y=64;
+			this.color.z=64;
 		}
 		this.color.w=1;
 	}
